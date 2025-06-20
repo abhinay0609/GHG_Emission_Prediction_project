@@ -16,10 +16,19 @@ Supply Chain Greenhouse Gas Emission Factors
 Python, Pandas, Scikit-learn, Matplotlib, Seaborn
 
 **Steps:**
-Step 1: Import Required Libraries
-Step 2: Load Dataset
-Step 3: Data Preprocessing (EDA+Cleaning+Encoding)
-Step 4: Training
-Step 5: Prediction and Evaluation
-Step 6: Hyperparameter Tuning
-Step 7: Comparative Study and Selecting the Best model
+Step 1: Import Required Libraries 
+Step 2: Load Dataset 
+Step 3: Data Preprocessing (EDA+Cleaning+Encoding) 
+Step 4: Training 
+Step 5: Prediction and Evaluation 
+Step 6: Hyperparameter Tuning 
+Step 7: Comparative Study and Selecting the Best model 
+
+
+**Work Done in Week 1: **
+1) Understood the Project Problem Statement and Project Goal. 
+2) Understood the theoretical aspect of the project. 
+3) Understood the Dataset. 
+4) Implemented Step 1) Import Required Libraries and Step 2) Load the Dataset Code on colab and also understood the code. 
+
+   
