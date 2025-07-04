@@ -16,13 +16,21 @@ Supply Chain Greenhouse Gas Emission Factors
 Python, Pandas, Scikit-learn, Matplotlib, Seaborn
 
 **Steps:**
-Step 1: Import Required Libraries 
+
+Step 1: Import Required Libraries
+
 Step 2: Load Dataset 
+
 Step 3: Data Preprocessing (EDA+Cleaning+Encoding) 
+
 Step 4: Training 
+
 Step 5: Prediction and Evaluation 
+
 Step 6: Hyperparameter Tuning 
+
 Step 7: Comparative Study and Selecting the Best model 
+
 
 ## 📅 Week 1: Understanding the Problem & Dataset
 
@@ -30,14 +38,14 @@ Step 7: Comparative Study and Selecting the Best model
 - 🧠 Learned to load, clean, and structure large datasets using **Pandas**, merge sheets based on schema similarity.
 - 📊 Outcome: One clean, combined DataFrame with meaningful features ready for preprocessing.
 
-🧮 Week 2: Data Preprocessing & Exploratory Data Analysis (EDA)
+## 🧮 Week 2: Data Preprocessing & Exploratory Data Analysis (EDA)
 
 - 🧹 Handled missing values, dropped unnecessary columns, and explored data types.
 - 📈 Performed **univariate & multivariate analysis** using **Seaborn heatmaps, histograms**, and **correlation matrix**.
 - 🔍 Investigated **normalization, skewness, and feature scaling** to prepare data for training.
 - ✅ Split data into `X_train`, `X_test`, `y_train`, and `y_test` after scaling with `StandardScaler`.
 
-Final Week 3: Model Building, Evaluation & Deployment
+## Final Week 3: Model Building, Evaluation & Deployment
 
 - 🤖 Trained both **Linear Regression** and **Random Forest** models. Also performed **GridSearchCV tuning**.
 - 📊 Achieved exceptional results:  
