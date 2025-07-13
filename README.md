@@ -62,5 +62,13 @@ Step 7: Comparative Study and Selecting the Best model
 - 💼 **Business Impact**: Enables accurate forecasting of supply chain GHG emissions — crucial for sustainability planning.
 - 🚀 **Deployment Ready**: Streamlit app built; model & scaler zipped.
 
+## 🌍 GHG Emission Prediction App
+
+This project predicts **Supply Chain Greenhouse Gas Emission Factors with Margins** using a trained machine learning model. It is deployed using Streamlit Cloud.
+
+## 🔗 Live App
+
+👉 [Try the App on Streamlit](https://ghgemissionprediction.streamlit.app/)
+
 
    
