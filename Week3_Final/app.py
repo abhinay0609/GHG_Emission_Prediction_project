@@ -44,22 +44,57 @@ st.markdown("""
 This app predicts **Supply Chain Emission Factors with Margins** based on DQ metrics and other parameters.
 """)
 
+
 # Input form
 with st.form("prediction_form"):
-    substance = st.selectbox("Substance", ['carbon dioxide', 'methane', 'nitrous oxide', 'other GHGs'])
-    unit = st.selectbox("Unit", ['kg/2018 USD, purchaser price', 'kg CO2e/2018 USD, purchaser price'])
-    source = st.selectbox("Source", ['Commodity', 'Industry'])
-    supply_wo_margin = st.number_input("Supply Chain Emission Factors without Margins", min_value=0.0)
-    margin = st.number_input("Margins of Supply Chain Emission Factors", min_value=0.0)
-    dq_reliability = st.slider("DQ Reliability", 0.0, 1.0)
-    dq_temporal = st.slider("DQ Temporal Correlation", 0.0, 1.0)
-    dq_geo = st.slider("DQ Geographical Correlation", 0.0, 1.0)
-    dq_tech = st.slider("DQ Technological Correlation", 0.0, 1.0)
-    dq_data = st.slider("DQ Data Collection", 0.0, 1.0)
+    st.markdown("### 🌿 Enter Supply Chain Emission Details Below")
 
-    submit = st.form_submit_button("Predict")
+    substance = st.selectbox("Select Greenhouse Gas (GHG)", 
+        ['carbon dioxide', 'methane', 'nitrous oxide', 'other GHGs'])
 
-# Prediction
+    unit = st.selectbox("Unit of Measurement", 
+        ['kg/2018 USD, purchaser price', 'kg CO2e/2018 USD, purchaser price'])
+
+    source = st.selectbox("Data Source Type", 
+        ['Commodity', 'Industry'])
+
+    supply_wo_margin = st.number_input(
+        "Emission Factor (without Margins)", min_value=0.0, 
+        help="Base supply chain emission factor before applying uncertainty margin."
+    )
+
+    margin = st.number_input(
+        "Margin Value", min_value=0.0, 
+        help="Represents the uncertainty or error range in emission factor reporting."
+    )
+
+    dq_reliability = st.slider(
+        "📊 Data Quality - Reliability", 0.0, 1.0, help="How reliable or trustworthy the emission data is."
+    )
+
+    dq_temporal = st.slider(
+        "🕒 Data Quality - Temporal Correlation", 0.0, 1.0, 
+        help="How recent or timely the data is. Higher value = more recent."
+    )
+
+    dq_geo = st.slider(
+        "🌍 Data Quality - Geographical Correlation", 0.0, 1.0, 
+        help="How location-specific the data is. Higher value = better regional accuracy."
+    )
+
+    dq_tech = st.slider(
+        "⚙️ Data Quality - Technological Correlation", 0.0, 1.0, 
+        help="How closely the data aligns with current technologies."
+    )
+
+    dq_data = st.slider(
+        "📥 Data Quality - Collection Method", 0.0, 1.0, 
+        help="Quality of how the data was collected. Higher = better sampling method."
+    )
+
+    submit = st.form_submit_button("🔍 Predict Emission")
+
+# Prediction and Explanation
 if submit:
     input_data = {
         'Substance': substance,
@@ -76,6 +111,33 @@ if submit:
 
     input_df = preprocess_input(pd.DataFrame([input_data]))
     input_scaled = scaler.transform(input_df)
-    prediction = model.predict(input_scaled)
+    prediction = model.predict(input_scaled)[0]
 
-    st.success(f"🎯 Predicted Supply Chain Emission Factor with Margin: **{prediction[0]:.4f}**")
+    # Interpret the result
+    if prediction < 0.5:
+        level = "✅ Low emissions (Safe)"
+        color = "green"
+    elif 0.5 <= prediction < 1.5:
+        level = "⚠️ Moderate emissions (Review Recommended)"
+        color = "orange"
+    else:
+        level = "🚨 High emissions (Action Required)"
+        color = "red"
+
+    st.success(f"🎯 Predicted Emission Factor with Margin: **{prediction:.4f} kg CO₂e / USD**")
+
+    st.markdown(f"### Emission Level: :{color}[{level}]")
+    
+    st.info(
+        f"This means that for every **1 USD** spent in this supply chain activity, "
+        f"approximately **{prediction:.4f} kilograms of greenhouse gases** are emitted into the environment."
+    )
+
+    st.markdown(
+        """
+        **🔍 Interpretation:**  
+        - This value combines both the **base emission factor** and the **margin of uncertainty**.  
+        - Use this information to target **high-emission sectors**, adopt **greener alternatives**, or prioritize **sustainable sourcing**.
+        """
+    )
+    
